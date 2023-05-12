@@ -33,7 +33,7 @@ prepare() {
 	cd "$pkgname-$pkgver"
 
 	rm -rf deps/rocksdb
-	ln -sf $srcdir/rocksdb-$_rocksdb_version/. deps/rocksdb
+	ln -sf "${srcdir}/rocksdb-$_rocksdb_version/." deps/rocksdb
 	
 	./autogen.sh
 }
@@ -69,7 +69,7 @@ package() {
 	make DESTDIR="$pkgdir" install
 
 	# Deleting the webapp
-	rm -rf $pkgdir/usr/share/construct
+	rm -rf "${pkgdir}/usr/share/construct"
 	install -vDm644 LICENSE -t "${pkgdir}/usr/share/licenses/${pkgname}"
 
 	install -vDm644 "${srcdir}"/${pkgname}.service -t "${pkgdir}/usr/lib/systemd/system"
