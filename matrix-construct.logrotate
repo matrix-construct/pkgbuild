@@ -1,0 +1,5 @@
+/var/log/construct/* {
+   su construct construct
+   missingok
+   notifempty
+}
