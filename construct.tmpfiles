@@ -1,2 +1,0 @@
-d /var/lib/construct 0750 construct construct
-d /var/log/construct 0750 construct construct
