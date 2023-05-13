@@ -3,22 +3,22 @@
 
 _rocksdb_version=8.1.1    # Should match the version of rocksdb shipped in the offical arch repositories
 
-pkgname=('construct')
+pkgname=('matrix-construct')
 pkgver=0.9.578
 pkgrel=1
 pkgdesc="A Matrix homeserver written in C++ powered by RocksDB"
 arch=('x86_64')
 url="https://github.com/matrix-construct/construct"
 license=('BSD')
-depends=('boost-libs' 'rocksdb' 'openssl' 'file' 'icu' 'libpng' 'libsodium' 'lz4' 'jemalloc' 'zstd' 'xz')
-makedepends=('boost' 'autoconf-archive' 'autoconf2.13' 'cmake' 'opencl-headers')
+depends=('boost-libs' 'file' 'icu' 'jemalloc' 'libatomic_ops' 'libpng' 'libsodium' 'lz4' 'openssl' 'rocksdb' 'xz' 'zstd')
+makedepends=('autoconf2.13' 'autoconf-archive' 'boost' 'cmake' 'imagemagick' 'opencl-headers')
 optdepends=('imagemagick: Thumbnail generation'
-	        "ocl-icd: Enable Construct's AI/ML features")
-source=("$pkgname-$pkgver.tar.gz::https://github.com/matrix-construct/construct/archive/refs/tags/$pkgver.tar.gz"
+	    "ocl-icd: Enables Construct's AI/ML features")
+source=("$pkgname-$pkgver::git+https://github.com/matrix-construct/construct.git#tag=$pkgver"
 	"rocksdb-$_rocksdb_version.tar.gz::https://github.com/facebook/rocksdb/archive/refs/tags/v$_rocksdb_version.tar.gz"
-	"construct.service"
-	"construct.sysusers"
-	"construct.tmpfiles")
+	"matrix-construct@.service"
+	"matrix-construct.sysusers"
+	"matrix-construct.tmpfiles")
 
 sha512sums=('SKIP'
 	    'SKIP'
@@ -72,8 +72,8 @@ package() {
 	rm -rf "${pkgdir}/usr/share/construct"
 	install -vDm644 LICENSE -t "${pkgdir}/usr/share/licenses/${pkgname}"
 
-	install -vDm644 "${srcdir}"/${pkgname}.service -t "${pkgdir}/usr/lib/systemd/system"
-	install -vDm644 "${srcdir}"/${pkgname}.sysusers "${pkgdir}/usr/lib/sysusers.d/${pkgname}.conf"
-	install -vDm644 "${srcdir}"/${pkgname}.tmpfiles "${pkgdir}/usr/lib/tmpfiles.d/${pkgname}.conf"
+	install -vDm644 "${srcdir}/${pkgname}@.service" -t "${pkgdir}/usr/lib/systemd/system"
+	install -vDm644 "${srcdir}/${pkgname}.sysusers" "${pkgdir}/usr/lib/sysusers.d/${pkgname}.conf"
+	install -vDm644 "${srcdir}/${pkgname}.tmpfiles" "${pkgdir}/usr/lib/tmpfiles.d/${pkgname}.conf"
 
 }
