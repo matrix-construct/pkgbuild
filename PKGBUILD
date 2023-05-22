@@ -10,8 +10,8 @@ pkgdesc="A Matrix homeserver written in C++ powered by RocksDB"
 arch=('x86_64')
 url="https://github.com/matrix-construct/construct"
 license=('BSD')
-depends=('boost-libs' 'file' 'icu' 'jemalloc' 'libatomic_ops' 'libpng' 'libsodium' 'lz4' 'openssl' 'rocksdb' 'xz' 'zstd')
-makedepends=('autoconf2.13' 'autoconf-archive' 'boost' 'cmake' 'imagemagick' 'opencl-headers')
+depends=('boost-libs' 'file' 'icu' 'imagemagick' 'jemalloc' 'libatomic_ops' 'libpng' 'libsodium' 'lz4' 'openssl' 'rocksdb' 'xz' 'zstd')
+makedepends=('autoconf2.13' 'autoconf-archive' 'boost' 'cmake' 'opencl-headers')
 optdepends=('imagemagick: Enables thumbnail generation'
 	    "logrotate: Rotates Construct's logs automatically"
 	    "ocl-icd: Enables Construct's AI/ML features")
