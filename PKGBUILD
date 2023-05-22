@@ -75,7 +75,7 @@ package() {
 	rm -rf "${pkgdir}/usr/share/construct"
 	install -vDm644 LICENSE -t "${pkgdir}/usr/share/licenses/${pkgname}"
 
-	install -vDm644 "${pkgname}.logrotate" "${pkgdir}/etc/logrotate.d/${pkgname}"
+	install -vDm644 "${srcdir}/${pkgname}.logrotate" "${pkgdir}/etc/logrotate.d/${pkgname}"
 	install -vDm644 "${srcdir}/${pkgname}@.service" -t "${pkgdir}/usr/lib/systemd/system"
 	install -vDm644 "${srcdir}/${pkgname}.sysusers" "${pkgdir}/usr/lib/sysusers.d/${pkgname}.conf"
 	install -vDm644 "${srcdir}/${pkgname}.tmpfiles" "${pkgdir}/usr/lib/tmpfiles.d/${pkgname}.conf"
