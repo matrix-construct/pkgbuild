@@ -7,7 +7,7 @@ User=construct
 Group=construct
 Type=simple
 ExecStart=/usr/bin/construct %I
-RestartKillSignal=SIGUSR1
+ExecReload=kill -USR1 $MAINPID
 WorkingDirectory=/var/lib/construct
 
 # Sandboxing
