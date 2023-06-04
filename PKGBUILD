@@ -6,15 +6,13 @@ _rocksdb_version=8.1.1    # Should match the version of rocksdb shipped in the o
 pkgname=('matrix-construct')
 pkgver=0.9.578
 pkgrel=1
-pkgdesc="A Matrix homeserver written in C++ powered by RocksDB"
+pkgdesc="Matrix homeserver with high performance and minimal dependencies."
 arch=('x86_64')
 url="https://github.com/matrix-construct/construct"
 license=('BSD')
-depends=('boost-libs' 'file' 'icu' 'imagemagick' 'jemalloc' 'libatomic_ops' 'libpng' 'libsodium' 'lz4' 'openssl' 'rocksdb' 'xz' 'zstd')
-makedepends=('autoconf2.13' 'autoconf-archive' 'boost' 'cmake' 'opencl-headers')
-optdepends=('graphicsmagick: Enables thumbnail generation'
-	    "logrotate: Rotates Construct's logs automatically"
-	    "ocl-icd: Enables Construct's AI/ML features")
+depends=('boost-libs' 'file' 'freetype2' 'graphicsmagick' 'icu' 'jemalloc' 'libatomic_ops' 'libpng' 'libsodium' 'lz4' 'openssl' 'rocksdb' 'xz' 'zstd')
+makedepends=('autoconf2.13' 'autoconf-archive' 'automake' 'bash' 'binutils' 'boost' 'curl' 'git' 'libtool' 'make' 'vim')
+optdepends=("logrotate: Rotates Construct's logs automatically")
 backup=('etc/logrotate.d/matrix-construct')
 source=("$pkgname-$pkgver::git+https://github.com/matrix-construct/construct.git#tag=$pkgver"
 	"rocksdb-$_rocksdb_version.tar.gz::https://github.com/facebook/rocksdb/archive/refs/tags/v$_rocksdb_version.tar.gz"
@@ -45,7 +43,7 @@ build() {
 	cd "$pkgname-$pkgver"
 
 	./configure \
-	--prefix=/ --enable-debug \
+	--prefix=/ --disable-opencl \
 	bindir=/usr/bin \
 	sysconfdir=/etc \
 	includedir=/usr/include \
